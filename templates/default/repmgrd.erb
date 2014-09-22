@@ -1,0 +1,21 @@
+# default settings for repmgrd. This file is source by /bin/sh from
+# /etc/init.d/repmgrd
+
+# disable repmgrd by default so it won't get started upon installation
+# valid values: yes/no
+REPMGRD_ENABLED=yes
+
+# configuration file (required)
+REPMGRD_CONF="<%= node[:repmgr][:config_file_path] %>"
+
+# additional options
+#REPMGRD_OPTS=""
+
+# user to run repmgrd as
+REPMGRD_USER=<%= node[:repmgr][:system_user] %>
+
+# repmgrd binary
+REPMGR_BIN=<%= node[:repmgr][:repmgr_bin] %>
+
+# pid file
+REPMGR_PIDFILE=/var/run/repmgrd.pid

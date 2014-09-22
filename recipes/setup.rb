@@ -80,6 +80,13 @@ else
       retries 2
     end
 
+    template "/etc/default/repmgrd" do
+      source 'repmgrd.erb'
+      mode 0644
+      owner 'root'
+      group 'root'
+    end
+
     service 'repmgrd-setup-start' do
       service_name 'repmgrd'
       action :start
@@ -101,8 +108,8 @@ else
       end
       action :nothing
       subscribes :create, 'service[repmgrd-setup-start]', :immediately
-      retries 20
-      retry_delay 20
+      retries 60
+      retry_delay 60
       # NOTE: We want to give lots of breathing room here for catchup
     end
     
